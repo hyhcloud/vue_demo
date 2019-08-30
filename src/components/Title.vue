@@ -1,16 +1,39 @@
 <template>
-  <div>
-    <h1>评&nbsp;&nbsp;&nbsp;&nbsp;论</h1>
+  <div >
+    <div class="form-group">
+      <input  v-model="queryStr" @keyup.enter="addInfo" class="form-control" type="text" />
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
-</script> 
+export default {
+  data() {
+    return {
+      queryStr: ""
+    };
+  },
+  props: {
+      addInfos: {
+          type: Function,
+      },
+  },
+  methods: {
+    addInfo() {
+        if(!this.queryStr.trim()){
+            alert('请输入任务')
+            return
+        }
+        const info = {
+            msg: this.queryStr,
+            completed: false
+        }
+        this.addInfos(info)
+        this.queryStr = ''
+    }
+  }
+};
+</script>
 
-<style scoped>
-*{
-    margin: 0;
-}
-
+<style>
 </style>

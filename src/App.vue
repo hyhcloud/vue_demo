@@ -1,61 +1,43 @@
 <template>
-  <div id="app">
-    <Title class="title" />
-    <div class="sub">
-      <Add :addCommon="addCommon" class="left" />
-      <List :common="comment" :deleteCommon="deleteCommon" />
+  <div class="container" id="app">
+    <div class="row flex-column align-items-center">
+      <Title :addInfos="addInfos" class="col-4"></Title>
+      <List :deleteInfos="deleteInfos" class="col-4" :infos="infos" />
+      <Footer />
     </div>
   </div>
 </template>
 
 <script>
 import Title from "@/components/Title.vue";
-import Add from "@/components/Add.vue";
 import List from "@/components/List.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   data() {
     return {
-      comment: [
-        {
-          name: "zhangsan",
-          comment: "hello"
-        },
-        {
-          name: "lisi",
-          comment: "world"
-        }
+      infos: [
+        { msg: "a", completed: false },
+        { msg: "b", completed: false },
+        { msg: "c", completed: true }
       ]
     };
   },
+  methods: {
+      addInfos(info) {
+          this.infos.unshift(info)
+      },
+      deleteInfos(index){
+          this.infos.splice(index,1)
+      }
+  },
   components: {
     Title,
-    Add,
-    List
-  },
-  methods: {
-    addCommon(common) {
-      this.comment.unshift(common)
-    },
-    deleteCommon(index){
-      this.comment.splice(index,1)
-    }
+    List,
+    Footer
   }
 };
 </script>
 
-<style>
-.sub {
-  display: flex;
-  justify-content: center;
-}
-.left {
-  margin-right: 5px;
-}
-.title {
-  height: 300px;
-  background-color: #12f832;
-  text-align: center;
-  line-height: 300px;
-}
+<style scoped>
 </style>
