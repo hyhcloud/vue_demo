@@ -3,7 +3,7 @@
     <div class="row flex-column align-items-center">
       <Title :addInfos="addInfos" class="col-4"></Title>
       <List :deleteInfos="deleteInfos" class="col-4" :infos="infos" />
-      <Footer />
+      <Footer :setAllCompleted="setAllCompleted" :deleteSelected="deleteSelected" :infos="infos" />
     </div>
   </div>
 </template>
@@ -19,17 +19,23 @@ export default {
       infos: [
         { msg: "a", completed: false },
         { msg: "b", completed: false },
-        { msg: "c", completed: true }
+        { msg: "c", completed: false }
       ]
     };
   },
   methods: {
-      addInfos(info) {
-          this.infos.unshift(info)
-      },
-      deleteInfos(index){
-          this.infos.splice(index,1)
-      }
+    addInfos(info) {
+      this.infos.unshift(info);
+    },
+    deleteInfos(index) {
+      this.infos.splice(index, 1);
+    },
+    deleteSelected() {
+      this.infos = this.infos.filter(info => !info.completed);
+    },
+    setAllCompleted(isCheck) {
+      this.infos.forEach(info => (info.completed = isCheck));
+    }
   },
   components: {
     Title,
