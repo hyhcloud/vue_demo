@@ -17,7 +17,7 @@ export default {
   data(){
     return {
       common: {
-        name: '',
+        name: '1',
         comment: ''
       }
     }
