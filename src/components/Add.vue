@@ -16,15 +16,26 @@
 export default {
   data(){
     return {
-      common: {
-        name: '1',
-        comment: ''
-      }
+      name: '',
+      comment: ''
+    }
+  },
+  props: {
+    addCommon: {
+      type: Function,
+      required: true
     }
   },
   methods: {
-    
-  }
+    add(){
+      const common = {
+        name: this.name,
+        comment:this.comment,
+      }
+      this.addCommon(common)
+    }
+  },
+
 };
 </script>
 

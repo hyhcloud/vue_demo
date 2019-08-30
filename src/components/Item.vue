@@ -1,7 +1,13 @@
 <template>
   <div>
-    <li class="list user">{{common.name}}</li>
-    <li class="list common">{{common.comment}}</li>
+    <li class="list user">
+      {{common.name}}
+      <button @click="deleteItem">删除</button>
+    </li>
+    <li class="list common">
+      {{common.comment}}
+      <button @click="deleteItem">删除</button>
+    </li>
   </div>
 </template>
 
@@ -9,9 +15,19 @@
 export default {
   props: {
     common: {
-      type: Object,
-    }
+      type: Object
+    },
+    index: {
+      type: Number
+    },
+    deleteCommon: Function
   },
+  methods: {
+    deleteItem() {
+      const { index, deleteCommon } = this;
+      deleteCommon(index);
+    }
+  }
 };
 </script>
 

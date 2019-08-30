@@ -2,7 +2,7 @@
   <div>
     <h3>评论回复</h3>
     <ul>
-      <Item v-for="(item,index) in common" :key="index" :common="item" />
+      <Item :deleteCommon="deleteCommon" :index="index" v-for="(item,index) in common" :key="index" :common="item" />
     </ul>
   </div>
 </template>
@@ -11,11 +11,12 @@
 import Item from "@/components/Item.vue";
 export default {
   props: {
-    common: Object
+    common: Array,
+    deleteCommon: Function
   },
   components: {
     Item
-  }
+  },
 };
 </script>
 

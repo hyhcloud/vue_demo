@@ -2,8 +2,8 @@
   <div id="app">
     <Title class="title" />
     <div class="sub">
-      <Add class="left" />
-      <List :common = 'comment' />
+      <Add :addCommon="addCommon" class="left" />
+      <List :common="comment" :deleteCommon="deleteCommon" />
     </div>
   </div>
 </template>
@@ -14,21 +14,32 @@ import Add from "@/components/Add.vue";
 import List from "@/components/List.vue";
 
 export default {
-  data(){
+  data() {
     return {
-      comment: [{
-        name: 'zhangsan',
-        comment: 'hello'
-      },{
-        name: 'lisi',
-        comment: 'world'
-      }]
-    }
+      comment: [
+        {
+          name: "zhangsan",
+          comment: "hello"
+        },
+        {
+          name: "lisi",
+          comment: "world"
+        }
+      ]
+    };
   },
   components: {
     Title,
     Add,
     List
+  },
+  methods: {
+    addCommon(common) {
+      this.comment.unshift(common)
+    },
+    deleteCommon(index){
+      this.comment.splice(index,1)
+    }
   }
 };
 </script>
